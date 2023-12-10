@@ -39,6 +39,14 @@ func main() {
 			fmt.Printf("Part %d for day %d doesn't exists\n", args.part, args.day)
 			os.Exit(1)
 		}
+	case 4:
+		switch args.part {
+		case 1:
+			res, err = days.Day4Part1()
+		default:
+			fmt.Printf("Part %d for day %d doesn't exists\n", args.part, args.day)
+			os.Exit(1)
+		}
 	default:
 		fmt.Printf("Day %d doesn't exists\n", args.day)
 		os.Exit(1)
