@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-type Args struct {
+type args struct {
 	day  int
 	part int
 }
@@ -18,12 +18,30 @@ func main() {
 	var res string
 	var err error
 
-	if args.day == 1 {
-		if args.part == 1 {
+	switch args.day {
+	case 1:
+		switch args.part {
+		case 1:
 			res, err = days.Day1Part1()
-		} else if args.part == 2 {
+		case 2:
 			res, err = days.Day1Part2()
+		default:
+			fmt.Printf("Part %d for day %d doesn't exists\n", args.part, args.day)
+			os.Exit(1)
 		}
+	case 2:
+		switch args.part {
+		case 1:
+			res, err = days.Day2Part1()
+		case 2:
+			res, err = days.Day2Part2()
+		default:
+			fmt.Printf("Part %d for day %d doesn't exists\n", args.part, args.day)
+			os.Exit(1)
+		}
+	default:
+		fmt.Printf("Day %d doesn't exists\n", args.day)
+		os.Exit(1)
 	}
 
 	if err == nil {
@@ -37,8 +55,8 @@ func main() {
 
 }
 
-func getArgs() Args {
-	var args Args
+func getArgs() args {
+	var args args
 
 	flag.IntVar(&args.day, "day", 1, "Specify the Advent of Code day")
 	flag.IntVar(&args.part, "part", 1, "Specify the Advent of Code day part")
