@@ -1,4 +1,4 @@
-package days
+package calendar
 
 import (
 	"fmt"

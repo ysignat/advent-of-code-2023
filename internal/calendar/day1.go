@@ -1,4 +1,4 @@
-package days
+package calendar
 
 import (
 	"fmt"
@@ -7,7 +7,9 @@ import (
 	"unicode"
 )
 
-func Day1Part1() (string, error) {
+type day1Part1 struct{}
+
+func (day1Part1) Solve() (string, error) {
 	sum := 0
 
 	data, err := getFileContent(1, 1)
@@ -42,7 +44,9 @@ func Day1Part1() (string, error) {
 	return fmt.Sprint(sum), nil
 }
 
-func Day1Part2() (string, error) {
+type day1Part2 struct{}
+
+func (day1Part2) Solve() (string, error) {
 	string_digits := [...]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 	var sum int
@@ -82,4 +86,17 @@ func Day1Part2() (string, error) {
 	}
 
 	return fmt.Sprint(sum), nil
+}
+
+type day1 struct{}
+
+func (day1) GetPart(part int) (DayPartSolver, error) {
+	switch part {
+	case 1:
+		return day1Part1{}, nil
+	case 2:
+		return day1Part2{}, nil
+	default:
+		return nil, NoSuchPartError{part: part}
+	}
 }

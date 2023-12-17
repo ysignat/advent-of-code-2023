@@ -1,4 +1,4 @@
-package days
+package calendar
 
 import (
 	"fmt"
@@ -68,7 +68,9 @@ func gameFromString(s string) (game, error) {
 
 }
 
-func Day2Part1() (string, error) {
+type day2Part1 struct{}
+
+func (day2Part1) Solve() (string, error) {
 	sum := 0
 
 	data, err := getFileContent(2, 1)
@@ -97,7 +99,9 @@ games_loop:
 	return fmt.Sprint(sum), nil
 }
 
-func Day2Part2() (string, error) {
+type day2Part2 struct{}
+
+func (day2Part2) Solve() (string, error) {
 	sum := 0
 
 	data, err := getFileContent(2, 1)
@@ -133,4 +137,17 @@ func Day2Part2() (string, error) {
 	}
 
 	return fmt.Sprint(sum), nil
+}
+
+type day2 struct{}
+
+func (day2) GetPart(part int) (DayPartSolver, error) {
+	switch part {
+	case 1:
+		return day2Part1{}, nil
+	case 2:
+		return day2Part2{}, nil
+	default:
+		return nil, NoSuchPartError{part: part}
+	}
 }

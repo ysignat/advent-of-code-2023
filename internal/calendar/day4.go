@@ -1,4 +1,4 @@
-package days
+package calendar
 
 import (
 	"fmt"
@@ -66,7 +66,9 @@ func arrayIntoSet(arr []int) map[int]bool {
 	return set
 }
 
-func Day4Part1() (string, error) {
+type day4Part1 struct{}
+
+func (day4Part1) Solve() (string, error) {
 	var sum float64
 
 	data, err := getFileContent(4, 1)
@@ -94,4 +96,15 @@ func Day4Part1() (string, error) {
 	}
 
 	return fmt.Sprint(sum), nil
+}
+
+type day4 struct{}
+
+func (day4) GetPart(part int) (DayPartSolver, error) {
+	switch part {
+	case 1:
+		return day4Part1{}, nil
+	default:
+		return nil, NoSuchPartError{part: part}
+	}
 }
