@@ -12,7 +12,7 @@ type card struct {
 	winning  []int
 }
 
-func cardFromString(s string) (card, error) {
+func newCard(s string) (card, error) {
 	card_string_splitted := strings.Split(s, ":")
 	numbers_string := card_string_splitted[1]
 	numbers_string_splitted := strings.Split(numbers_string, "|")
@@ -79,7 +79,7 @@ func (day4Part1) Solve() (string, error) {
 	splitted := strings.Split(string(data), "\n")
 
 	for _, line := range splitted {
-		card, err := cardFromString(line)
+		card, err := newCard(line)
 		if err != nil {
 			return fmt.Sprint(sum), nil
 		}

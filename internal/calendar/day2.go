@@ -23,7 +23,7 @@ type game struct {
 	sets []set
 }
 
-func setFromString(s string) (set, error) {
+func newSet(s string) (set, error) {
 	set_map := make(map[string]int)
 	splitted := strings.Split(s, ", ")
 
@@ -43,7 +43,7 @@ func setFromString(s string) (set, error) {
 	return set{red_count: set_map["red"], blue_count: set_map["blue"], green_count: set_map["green"]}, nil
 }
 
-func gameFromString(s string) (game, error) {
+func newGame(s string) (game, error) {
 	game_string_splitted := strings.Split(s, ": ")
 	game_id_string := game_string_splitted[0]
 	id_string, _ := strings.CutPrefix(game_id_string, "Game ")
@@ -57,7 +57,7 @@ func gameFromString(s string) (game, error) {
 	sets_string_splitted := strings.Split(sets_string, "; ")
 
 	for _, set_string := range sets_string_splitted {
-		set, err := setFromString(set_string)
+		set, err := newSet(set_string)
 		if err != nil {
 			return game{}, nil
 		}
@@ -82,7 +82,7 @@ func (day2Part1) Solve() (string, error) {
 
 games_loop:
 	for _, line := range splitted {
-		game, err := gameFromString(line)
+		game, err := newGame(line)
 		if err != nil {
 			return fmt.Sprint(sum), nil
 		}
@@ -112,7 +112,7 @@ func (day2Part2) Solve() (string, error) {
 	splitted := strings.Split(string(data), "\n")
 
 	for _, line := range splitted {
-		game, err := gameFromString(line)
+		game, err := newGame(line)
 		if err != nil {
 			return fmt.Sprint(sum), nil
 		}
