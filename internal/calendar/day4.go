@@ -68,15 +68,10 @@ func arrayIntoSet(arr []int) map[int]bool {
 
 type day4Part1 struct{}
 
-func (day4Part1) Solve() (string, error) {
+func (day4Part1) Solve(dataset string) (string, error) {
 	var sum float64
 
-	data, err := getFileContent(4, 1)
-	if err != nil {
-		return fmt.Sprint(sum), err
-	}
-
-	splitted := strings.Split(string(data), "\n")
+	splitted := strings.Split(dataset, "\n")
 
 	for _, line := range splitted {
 		card, err := newCard(line)
@@ -100,7 +95,7 @@ func (day4Part1) Solve() (string, error) {
 
 type day4 struct{}
 
-func (day4) GetPart(part int) (DayPartSolver, error) {
+func (day4) GetPart(part uint) (DayPartSolver, error) {
 	switch part {
 	case 1:
 		return day4Part1{}, nil

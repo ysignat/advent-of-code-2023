@@ -70,15 +70,10 @@ func newGame(s string) (game, error) {
 
 type day2Part1 struct{}
 
-func (day2Part1) Solve() (string, error) {
+func (day2Part1) Solve(dataset string) (string, error) {
 	sum := 0
 
-	data, err := getFileContent(2, 1)
-	if err != nil {
-		return fmt.Sprint(sum), err
-	}
-
-	splitted := strings.Split(string(data), "\n")
+	splitted := strings.Split(dataset, "\n")
 
 games_loop:
 	for _, line := range splitted {
@@ -101,15 +96,10 @@ games_loop:
 
 type day2Part2 struct{}
 
-func (day2Part2) Solve() (string, error) {
+func (day2Part2) Solve(dataset string) (string, error) {
 	sum := 0
 
-	data, err := getFileContent(2, 1)
-	if err != nil {
-		return fmt.Sprint(sum), err
-	}
-
-	splitted := strings.Split(string(data), "\n")
+	splitted := strings.Split(string(dataset), "\n")
 
 	for _, line := range splitted {
 		game, err := newGame(line)
@@ -141,7 +131,7 @@ func (day2Part2) Solve() (string, error) {
 
 type day2 struct{}
 
-func (day2) GetPart(part int) (DayPartSolver, error) {
+func (day2) GetPart(part uint) (DayPartSolver, error) {
 	switch part {
 	case 1:
 		return day2Part1{}, nil

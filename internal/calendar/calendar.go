@@ -3,11 +3,11 @@ package calendar
 import "fmt"
 
 type DayGetter interface {
-	GetDay(day int) (DayPartGetter, error)
+	GetDay(day uint) (DayPartGetter, error)
 }
 
 type NoSuchDayError struct {
-	day int
+	day uint
 }
 
 func (e NoSuchDayError) Error() string {
@@ -16,7 +16,7 @@ func (e NoSuchDayError) Error() string {
 
 type Calendar struct{}
 
-func (Calendar) GetDay(day int) (DayPartGetter, error) {
+func (Calendar) GetDay(day uint) (DayPartGetter, error) {
 	switch day {
 	case 1:
 		return day1{}, nil

@@ -9,15 +9,10 @@ import (
 
 type day1Part1 struct{}
 
-func (day1Part1) Solve() (string, error) {
+func (day1Part1) Solve(dataset string) (string, error) {
 	sum := 0
 
-	data, err := getFileContent(1, 1)
-	if err != nil {
-		return fmt.Sprint(sum), err
-	}
-
-	splitted := strings.Split(string(data), "\n")
+	splitted := strings.Split(dataset, "\n")
 	for _, line := range splitted {
 		var first_digit string
 		var last_digit string
@@ -46,17 +41,12 @@ func (day1Part1) Solve() (string, error) {
 
 type day1Part2 struct{}
 
-func (day1Part2) Solve() (string, error) {
+func (day1Part2) Solve(dataset string) (string, error) {
 	string_digits := [...]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 	var sum int
 
-	data, err := getFileContent(1, 1)
-	if err != nil {
-		return fmt.Sprint(sum), err
-	}
-
-	splitted := strings.Split(string(data), "\n")
+	splitted := strings.Split(dataset, "\n")
 	for _, line := range splitted {
 		var first_digit string
 		var last_digit string
@@ -90,7 +80,7 @@ func (day1Part2) Solve() (string, error) {
 
 type day1 struct{}
 
-func (day1) GetPart(part int) (DayPartSolver, error) {
+func (day1) GetPart(part uint) (DayPartSolver, error) {
 	switch part {
 	case 1:
 		return day1Part1{}, nil

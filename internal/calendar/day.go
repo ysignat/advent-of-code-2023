@@ -3,8 +3,8 @@ package calendar
 import "fmt"
 
 type NoSuchPartError struct {
-	day  int
-	part int
+	day  uint
+	part uint
 }
 
 func (e NoSuchPartError) Error() string {
@@ -12,9 +12,9 @@ func (e NoSuchPartError) Error() string {
 }
 
 type DayPartGetter interface {
-	GetPart(part int) (DayPartSolver, error)
+	GetPart(part uint) (DayPartSolver, error)
 }
 
 type DayPartSolver interface {
-	Solve() (string, error)
+	Solve(dataset string) (string, error)
 }
